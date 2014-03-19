@@ -26,8 +26,17 @@ void cb_cputemp(duda_request_t *dr)
 {
 	response->http_status(dr, 200);
 	
-	int i = response->sendfile(dr, "/sys/class/thermal/thermal_zone0/temp");
-	if (i != 0) {
+	FILE *cmdline = fopen("/sys/class/thermal/thermal_zone0/temp", "rb");
+	if (cmdline != NULL) {
+		char *arg = 0;
+		size_t size = 0;
+		while(getdelim(&arg, &size, 0, cmdline) != -1)
+		{
+			response->printf(dr, arg);
+		}
+		free(arg);
+		fclose(cmdline);
+	} else {
 		response->printf(dr, "ERROR");
 	}
 	
