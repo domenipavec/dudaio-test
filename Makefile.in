@@ -1,0 +1,7 @@
+NAME    = test
+CC      = gcc
+CFLAGS  = -g -Wall -DDEBUG
+INCDIR  =
+LDFLAGS =
+DEFS    =
+OBJECTS = main.o
