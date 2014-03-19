@@ -26,7 +26,7 @@ void cb_cputemp(duda_request_t *dr)
 {
 	response->http_status(dr, 200);
 	
-	int i = response->sendfile(dr, "/sys/class/thermal_zone0/temp");
+	int i = response->sendfile(dr, "/sys/class/thermal/thermal_zone0/temp");
 	if (i != 0) {
 		response->printf(dr, "ERROR");
 	}
