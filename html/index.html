@@ -34,7 +34,7 @@
 
                 responsePromise.success(function(data, status, headers, config) {
                     if (data != "ERROR") {
-                        data = parseInt(data)/1000 + "&deg;C";
+                        data = parseInt(data)/1000 + "\xB0C";
                     }
                     $scope.temp = data;
                     $timeout(func, 2000);
